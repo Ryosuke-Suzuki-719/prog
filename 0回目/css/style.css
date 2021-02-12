@@ -1,0 +1,510 @@
+@charset "utf-8";
+
+html{
+    font-size:62.5px; /* 16px × 62.5px=10px*/
+}
+
+body{
+    color:#333333;
+    font-family:"Open Sans",'ヒラギノ角ゴ ProN W3', Hiragino Kaku Gothic ProN, "メイリオ", Meiryo, sans-serif;
+    ;
+    font-size: 1.6rem;
+}
+
+img{
+    max-width:100%; 
+    /* 画像の横幅調整、大きいときは縮む */
+    height: auto;
+    /* 縦横比率を維持する */
+}
+
+.text-center{
+    text-align: center;
+    /* tac+tabテキスト、画像を中央揃え */
+}
+
+.site-title{
+    font-size:2.4rem;
+    font-weight: bold;
+}
+
+/* ●image */
+.cheese-image{
+    position: relative;
+    /* 親要素につける */
+}
+
+.cheese-image__text{
+    width: 1040px;
+    position: absolute;
+    /* 浮いて下のものが上にくる */
+    top: 40%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    /* 傾けたり、移動したり様々な動き、左に、上に、奥行 */
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    /* フォントサイズを基準にして文字間を取る */
+}
+
+.cheese-image__text.cheese2{
+    top: 60%;
+    left: 60%;
+    font-size: 2.4rem;
+}
+
+/* ●header */
+.header{
+    background-color: yellow;
+}
+
+.header-wrapper{
+    display: flex;
+    /* 横並び */
+    justify-content: space-between;
+    /* 2つのhtmlを両端揃え */
+    align-items: center;
+    /* aic+tab 上下高さを真ん中に */
+    height: 60px;
+    /* h60+tab 高さを指定 */
+
+}
+
+.nav-list{
+    display: flex;
+    /* df+tab */
+}
+
+.nav-item{
+    margin-left: 48px;
+    /*= margin: 0 0 0 48px; */
+}
+
+.nav-item>a{
+    color: black;
+}
+/* ●about */
+.profile{
+    padding: 80px 0;
+    /* 上下に80px余白 */
+}
+
+.profile__title{
+    margin: 0 0 40px;
+    /* 上0右0下40px */
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.profile-wrapper{
+    width: 560px;
+    /* テキストを560pxの範囲内に収める */
+    margin: auto;
+    /* 全体の真ん中に配置される */
+}
+
+.profile__eyecatch{
+    margin: 0 0 24px;
+}
+.profile__name{
+    margin: 0 0 40px; 
+    font-size: 1.4rem
+}
+
+.profile__text{
+    line-height: 2;
+    /*lh+tab 行間2 */
+    text-align: justify;
+    /* ta-tabjustfy行間揃え */
+    text-align: center;
+    text-align: inter-deograph;
+    /* IE適応 */
+    margin: 0 0 40px; 
+}
+
+/* ●course */
+.course-text{
+    display: flex;
+}
+
+.course-text__mirror{
+    display: flex;
+    flex-direction: row-reverse;
+    /* 右から左に並べる */
+}
+.course-item{
+    width: 50%;
+    margin: auto;
+}
+
+/* ●news */
+.wrapper{
+    max-width: 1140px;
+    /* 最大1140px */
+    margin: auto;
+}
+
+.btn{
+    display: block;
+    /* ｲﾝﾗｲﾝﾚﾍﾞﾙﾎﾞｯｸｽがﾌﾞﾛｯｸﾚﾍﾞﾙﾎﾞｯｸｽに変わった */
+    width: 312px;
+    margin: auto;
+    /* 左右の余白を揃える */
+    padding: 21px 0;
+    /* 上下21pxの左右0 */
+    background-color: #f3c951;
+    color:#fff;
+    font-size: 1.4rem;
+}
+
+.news{
+    padding: 80px 0;
+    /* 上下は80px、左右は0 */
+    background-color: #f4f4f4;
+}
+
+.news__title{
+    margin: 0 0 64px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.news__list{
+    margin: 0 0 64px;
+    display: flex;
+    /* 親要素の囲いを作る */
+    justify-content: space-between;
+
+}
+
+.news__item{
+    width: 33.333%;
+    /* 3等分に収める */
+}
+.news__eyecatch{
+    margin: 0 0 24px;
+    width: 332px;
+}
+
+.news__heading{
+    margin: 0 16px 16px;
+    font-weight: bold;
+ /* td+tab下線 text-decoration: underline;   */
+}
+
+.news__contents{
+    padding: 0 16px;
+    /* 上下なし左右16px */
+    line-height: 1.5;
+}
+
+/* ●access */
+.access{
+    background-color: #f4f4f4;
+}
+/* ●contact */
+.contact{
+    padding: 80px 0 ;
+}
+
+.contact__title{
+    margin: 0 0 32px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.contact-wrapper{
+    width: 560px;
+    /* w560+tab560px以内*/
+    margin: auto;
+    /* 中央揃え */
+}
+
+.contact-inner{
+    display: flex;
+    /* 一つにまとめて横並びにする */
+    flex-wrap: wrap;
+    /*  複数行に折り返して表記 */
+    margin: 0 0 40px;
+}
+.contact-title{
+    text-align: right;
+    width: 152px;
+    margin: 0 20px 0 0;
+    /* 右に20px空ける */
+    font-weight: bold;
+}
+
+.contact-title.check-radio{
+    /* 二つ並べて表記すると指定できる */
+    padding: 0;
+}
+
+.contact-item{
+    width: 380px;
+    margin: 0 0 32px;
+    /* 下に32px空ける */
+}
+
+.contact-parts{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 複数のブラウザに適応する */
+    box-sizing: border-box;
+    /* widthの値が適応される */
+    width: 100%;
+    padding: 8px;
+    font-size: 1.6rem;
+    border: solid 1px #c9c9c9;
+    /* 普通の線 */
+}
+
+.contact-label{
+    display: block;
+    margin: 20px 0 0 -10px;
+    font-size: 0.9rem;
+}
+
+input[type*="radio"]{
+    /* inputのradioの属性に指示を出す */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 複数のブラウザに適応する */
+    width: 16px;
+    height: 16px;
+    margin: 0 10px 0 10px;
+    border: solid 1px #a0a0a0;
+    border-radius: 50%;
+    /* マルにする */
+    vertical-align: -2px;
+}
+input[type*="radio"]:checked{
+    /* チェックされた時にどう見えるか */
+    background-color: #a0a0a0;
+}
+
+.btn-submit{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 複数のブラウザに適応する */
+    border: none;
+}
+
+/* ●footer */
+.footer{
+    position: relative;
+    background-color: #707070;
+    padding: 24px 0;
+}
+
+.footer .wrapper{
+    /*.～.どっちも適応 */
+    position: relative;
+}
+
+.btn-pagetop{
+    background-color: #707070;
+    position: absolute;
+    top: -78px;
+    right: 0%;
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.icon-up{
+    display: block;
+    font-size: 2.4rem;
+    color: #fff;
+}
+
+.copyrights{
+    color: #fff;
+}
+
+/* ----スマホcss ----*/
+@media screen and ( max-width: 640px) {
+    /* スマホの画面に合わせるよ */   
+/* ●header */
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.header-wrapper{
+    display: none;
+    height: 64px;
+
+}
+
+.site-title{
+    padding: 24px 0;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.nav-list{
+    display: none;
+}
+
+.cheese-image{
+    box-sizing: border-box;
+    /* この箱の中に収めるよ width100%-20px */
+    width: 100%;
+    margin: 64px 0 0;
+}
+
+.cheese-image__text{
+    box-sizing: border-box;
+    /* この箱の中に収めるよ width100%-20px */
+    width: 100%;
+    padding: 0 10px;
+    font-size: 1.4rem;
+}
+
+.cheese-image__text.cheese2{
+    box-sizing: border-box;
+    /* この箱の中に収めるよ width100%-20px */
+    width: 100%;
+    padding: 0 10px;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+
+
+/* ●about */
+.profile-wrapper{
+    box-sizing: border-box;
+    /* この箱の中に収めるよ width100%-20px */
+    width: 100%;
+    padding: 0 10px;
+}
+
+.profile{
+    padding: 60px 0 60px;
+}
+
+.profile-wrapper{
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.profile__title{
+    margin: 0 0 24px;
+}
+
+.profile__eyecatch img{
+    box-sizing: border-box;
+    /* この箱の中に収めるよ width100%-20px */
+    width: 100%;
+    padding: 0 10px;
+}
+.profile__name{
+    margin: 0 0 20px;
+}
+
+/* ●course */
+.course{
+    padding: 40px 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.course-text {
+    display: block;
+}
+
+.course-text__mirror{
+    display: block;
+}
+
+.course-item{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 10px;
+}
+
+.btn{
+    width: 80%;
+    padding: 17px 0;
+    font-size: 1.6rem;
+}
+
+/* ●access */
+.access{
+    margin: 30px;
+}
+
+/* ●news */
+
+.news{
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.news__item{
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 100%;
+}
+.news__list{
+    display: block;
+
+}
+
+.news__eyecatch{
+    width: 100%;
+    margin: 0 10px
+}
+
+/* contact */
+.contact{
+    padding: 40px 0 80px;
+}
+
+.contact-wrapper{
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.contact-inner{
+    display: block;
+    
+}
+
+.contact__title{
+    width: 100%;
+    margin: 10px 0 10px;
+}
+
+.contact-title{
+    text-align: left;
+}
+
+.contact-item{
+    width: 100%;
+    text-align: left;
+    margin: 10px 0 20px;
+}
+
+/* footer */
+.footer{
+    padding: 20px 0;
+}
+
+.btn-pagetop{
+    display: none;
+}
+
+.copyrights{
+    font-size: 1.1rem;
+}
+
+}
