@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>おみくじ</title>
+</head>
+<body>
+
+<header>
+  <h1>おみくじ</h1>
+</header>
+
+<main>
+  <ul>
+    <li id="omikuji">おみくじを引く</li>
+  </ul>
+  <p id="echo"></p>
+</main>
+
+<footer>フッター</footer>
+<script>
+
+$("#omikuji").on("click",function(){
+    alert("ok");
+// 1~5の乱数を創る
+const a = Math.ceil( Math.random()*5);
+
+// 、if分岐処理
+  let view = "";
+if(a==1){
+    view = '大吉';
+} 
+if(a==2){
+    view = '中吉';
+} 
+if(a==3){
+    view = '小吉';
+}if(a==4){
+    view = '吉';
+}if(a==5){
+    view = '凶';
+}
+  // 表示処理
+  $("#echo").html(view);
+
+  });
+
+const a = Math.ceil( Math.random()*5);
+// Math.random0-1までのランダムの数字
+// Math.ceilきりあげ
+// a-1なら大吉と表記
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<body>
+
+<header>
+  <h1>じゃんけん</h1>
+</header>
+
+<main>
+
+  <div id="majide">グー、チョキ、パーから選んでね！</div>
+
+  <ul>
+    <li id="gu_btn">グー</li>
+    <li id="cho_btn">チョキ</li>
+    <li id="par_btn">パー</li>
+  </ul>
+
+  <div>コンピュータの出した手は？</div>
+  <div id="pc_hands">なに？</div>
+  <div id="judgment">判定は・・・？</div>
+
+</main>
+
+<footer></footer>
+<script>
+  // グーボタンを押したときの反応
+  $("#gu_btn").on("click",function(){
+  const a = Math.ceil( Math.random()*3);
+
+    let view = "";
+    if(a==1){
+      view = "あなたの勝ち";
+      $('#pc_hands').html("チョキ");
+    } 
+    if(a==2){
+      view = "あなたの負け";
+      $('#pc_hands').html("パー");
+    } 
+    if(a==3){
+      view = "あいこ";
+      $('#pc_hands').html("グー");
+    }
+    $("#judgment").html(view);
+    });
+
+  // チョキボタンを押したときの反応
+  $("#cho_btn").on("click",function(){
+  const a = Math.ceil( Math.random()*3);
+
+    let view = "";
+    if(a==1){
+      view = "あなたの勝ち";
+      $('#pc_hands').html("パー");
+    } 
+    if(a==2){
+      view = "あなたの負け";
+      $('#pc_hands').html("グー");
+    } 
+    if(a==3){
+      view = "あいこ";
+      $('#pc_hands').html("チョキ");
+    }
+    $("#judgment").html(view);
+    });
+
+  // パーボタンを押したときの反応
+  $("#par_btn").on("click",function(){
+  const a = Math.ceil( Math.random()*3);
+
+    let view = "";
+    if(a==1){
+      view = "あなたの勝ち";
+      $('#pc_hands').html("グー");
+    } 
+    if(a==2){
+      view = "あなたの負け";
+      $('#pc_hands').html("チョキ");
+    } 
+    if(a==3){
+      view = "あいこ";
+      $('#pc_hands').html("パー");
+    }
+    $("#judgment").html(view);
+    });
+
+  // ボタンの画像変換
+  $('#gu_btn').html('<img src="img/janken_gu.jpg" width="300px">');
+  $('#cho_btn').html('<img src="img/janken_choki.jpg" width="300px">');
+  $('#par_btn').html('<img src="img/janken_pa.jpg" width="300px">');
+
+// 画像をhover、カーソルを乗せたとき、mouseleave外した時の反応  
+// グーver.
+  $('#gu_btn').hover(function(){
+    $('#majide').html('本当にグーを出すの？');
+  });
+  $('#gu_btn').mouseleave(function(){
+    $('#majide').html('チョキかもしれないよねえ');
+  });
+  // チョキver.
+  $('#cho_btn').hover(function(){
+    $('#majide').html('本当にチョキを出すの？');
+  });
+  $('#cho_btn').mouseleave(function(){
+    $('#majide').html('グーじゃなくて良いの？');
+  });
+  // パーver.
+  $('#par_btn').hover(function(){
+    $('#majide').html('本当にチョキを出すの？');
+  });
+  $('#par_btn').mouseleave(function(){
+    $('#majide').html('パー最強説もあるよね');
+  });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>JS練習</title>
+</head>
+<body>
+<h1 id="echo">JS練習</h1>
+
+
+
+<script>
+
+// == 等しければ
+// != 等しくなければ
+// >< が大きい
+// >= が大きいか同じ
+
+const a = 10;
+if(a==10){
+    alert("10だよ");
+}else{
+    alert("10じゃないよ");
+}if(a==11){
+    alert("11だよ");
+}else if(a==12){
+    alert("12じゃないよ");
+}
+
+// if(a){alert("b")};もしaならb
+// else{(c)};それ以外ならc
+
+if(a==1){
+    alert("ok");
+}
+if(a==10){
+    alert("okk");
+}
+// 上2つと同じ意味、&&どちらも、||どちらか、!でなければ
+if(a==1 || a==10 ){
+    alert("ok");
+}
+
+function aa(){
+    var str= "関数を知らない";
+alert(str);  
+}
+aa();
+// function oo、ooを関数に変える、ショートカット
+
+var str= "関数を知らない";
+alert(str);
+// var変数、function関数
+
+// 引数function addition(a第一引数,b第二引数)、戻り値 return関数外に値を戻す
+
+// 足し算する定義   
+function add(a1,a2){
+    var n = a1 + a2;
+    return n;
+}
+var t = add(10,40);
+alert(t);
+
+</script>
+</body>
+</html>
