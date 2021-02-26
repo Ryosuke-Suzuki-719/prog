@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>お薬検索手帳2</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+<header>
+<h1>お薬検索手帳2</h1>
+</header>
+<main>
+    <div>困っている症状メモ</div>
+    <input type="text" id="key">
+    <div>選んだ薬</div>
+    <textarea id="memo"></textarea>
+
+    <div>お薬検索機能</div>
+    <button type="button1" id="button1" name="風邪薬" value="kazegusuri" class="button">風邪薬</button>
+    <button tpe="button2" id="button2" name="湿布薬" value="shippuyaku" class="button">湿布薬</button>
+
+    <div id="kazebtn">
+        <div>風邪の症状</div>
+            <div>
+                <label for="netsu" class="label"><input type="radio" name="kaze" id="netsu" value="1">発熱、頭痛、のどの痛み</label>
+                <label for="hana" class="label"><input type="radio" name="kaze" id="hana" value="2">鼻炎</label>
+                <label for="seki" class="label"><input type="radio" name="kaze" id="seki" value="3">咳</label>
+            </div>
+        <div id="judgment"></div>
+    </div>
+    <div id="shippubtn">
+        <div>痛みの症状</div>
+            <div>
+                <label for="netsu" class="label"><input type="radio" name="shippu" id="rokiso" value="1">痛み・腫れがひどい</label>
+                <label for="hana" class="label"><input type="radio" name="shippu" id="sari" value="2">すこし痛む</label>
+                <label for="seki" class="label"><input type="radio" name="shippu" id="hot" value="3">冷えると痛む</label>
+            </div>
+        <div id="judgment2"></div>
+    </div>
+
+
+
+
+    <ul>
+        <li id = "save">保存する</li>
+        <li id = "clear">削除する</li>
+    </ul>
+</main>
+<table id="list">
+
+
+
+</table>
+<script>
+// 薬ボタンを選択したときの反応
+// 風邪薬ボタンを押すまでは隠す
+$("#kazebtn").hide();
+// 風邪薬ボタンを押したときに見えるようにする
+$("#button1").on("click",function(){
+    $("#kazebtn").show();
+    $("#button2").hide();
+    });
+// 
+$(function(){
+    $('input[name="kaze"]:radio').change(function(){
+        var radioval = $(this).val(); 
+        if (radioval==1){
+            $("#judgment").html("解熱鎮痛剤がおすすめです。");
+            $("#memo").html("解熱鎮痛剤");
+        }
+        if (radioval==2){
+            $("#judgment").html("鼻炎薬がおすすめです。");
+            $("#memo").html("鼻炎薬");
+        }
+        if (radioval==3){
+            $("#judgment").html("咳止め薬がおすすめです。");
+            $("#memo").html("咳止め薬");
+        }
+    });
+});
+
+// 湿布薬ボタンを選択したときの反応
+$("#shippubtn").hide();
+// 湿布ボタンを押したときに見えるようにする
+$("#button2").on("click",function(){
+    $("#shippubtn").show();
+    $("#button1").hide();
+    });
+// 
+$(function(){
+    $('input[name="shippu"]:radio').change(function(){
+        var radioval = $(this).val(); 
+        if (radioval==1){
+            $("#judgment2").html("ロキソプロフェンの湿布薬がおすすめです。");
+            $("#memo").html("ロキソプロフェンの湿布薬");
+        }
+        if (radioval==2){
+            $("#judgment2").html("サリチル酸の湿布薬がおすすめです。");
+            $("#memo").html("サリチル酸の湿布薬");
+        }
+        if (radioval==3){
+            $("#judgment2").html("温湿布がおすすめです。");
+            $("#memo").html("温湿布");
+        }
+    });
+});
+
+
+
+
+
+//1.Save クリックイベント
+$(function(){
+    $("#save").on("click",function(){
+    const key = $("#key").val();
+    const value = $("#memo").val();
+    localStorage.setItem(key,value);
+    const html =`<tr><th>"${key}"</th><td>"${value}"</td></tr>`;
+    $("#list").append(html);
+    alert("保存しました。");
+    });
+
+//2.clear クリックイベント
+    $("#clear").on("click",function(){
+        localStorage.clear();
+        $("#list").empty();
+        alert("消去しました。");
+    });
+
+//3.ページ読み込み：保存データ取得表示
+    for(let i = 0; i<localStorage.length; i++){
+        const key = localStorage.key(i);
+        console.log(key);
+        const value = localStorage.getItem(key);
+        const html = `<tr><th>"${key}"</th><td></td>"${value}"</tr>`;
+        $("list").append(html);
+    }
+
+});
+
+
+//  ここから自作の症状の選択
+// 症状選択
+//     let sho2 = "";
+//     let sho = ["お困りの症状をお選びください","風邪薬","湿布薬"];
+//     // console.log("風邪");
+//     for(let i = 0; i<sho.length; i++){
+//     console.log(sho[i])
+//         sho2 +=  `<option value="${sho[i]}">${sho[i]}</option>`
+//     }
+//     $("#shojo").html(sho2);
+// // 年齢
+//     let age2 = "";
+//     let age = ["年齢を教えてください","15歳未満","15歳以上"];
+//     for(let i = 0; i<age.length; i++){
+//     console.log(age[i])
+//         age2 +=  `<option value="${age[i]}">${age[i]}</option>`
+//     }
+//     $("#age").html(age2);
+
+// // selectタグで選んだ時の表記
+//     $("select").change(function(){
+//     var val = $("select option:selected").val();
+//     if (val == "select") return;
+//     $("section").fadeOut();
+//     $("section#" + val ).fadeIn();
+//     });
+
+// // 
+
+
+</script>
+<footer><small>G's Drug Store</small></footer>
+</body>
+</html>

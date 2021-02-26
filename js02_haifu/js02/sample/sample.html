@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    const list1 = ['大吉', '中吉', '小吉', '吉', '凶'];
+    Math.random() * list1.length;
+    // list1のlengthからランダムに数字を選んでくる
+    const random = Math.floor(Math.random()* list1.length);
+    // randomにさせる、整数の上の数字から選ぶ
+    console.log(list1[random]);
+    // list1[random]から表示
+    // //  list1は[]を見る
+    // const len = list1.length;
+    // // console.log(len);
+    // console.log(list1[2]);
+    // // 小吉を取りたい、0.1.2
+
+    const list2 = [1, 3, 5, 7];
+    // console.log(list2);
+    // 後に足したものは表記されない
+    list2.push(9);
+    // 9を付け加える
+    console.log(list2);
+
+    const list3 = [100, 364, 8900, 700, 900];
+    console.log(Math.max(...list3));
+
+    
+
+
+</script>
+</body>
+</html>
