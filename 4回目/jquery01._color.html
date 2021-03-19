@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <title>jquery練習</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1 id="echo">jquery練習</h1>
+    <div class="result"></div>
+    <div class="rangeResult"></div>
+
+    <input type="color" id="color">
+
+    <script>
+      const color = $("#color").val();
+      $(".result").html(color);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>三角形</title>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="300"></canvas>
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <script>
+    const can = $("#canvas")[0];
+    const ctx = can.getContext("2d");
+  // 三角形を描く
+    // 管理するためのパスを作成,視点を0,0に移す
+    ctx.beginPath();
+    // カーソルを指定した位置に移動する
+    ctx.moveTo(50, 50); // moveTo(x,y)
+    // カーソルを新しい座標に動きながら線を描く
+    ctx.lineTo(50, 80); // lineTo(x,y)
+    // 上と同じ
+    ctx.lineTo(10, 80);
+    // 現在のカーソルの位置と始点の位置が異なる場合にはそこに向けて直線を結ぶ
+    ctx.closePath();
+    // 描く
+    ctx.stroke();
+  </script>
+</body>
+</html>

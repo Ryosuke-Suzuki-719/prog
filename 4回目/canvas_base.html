@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas_base.html</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <section>
+      <h1 class="title">写真加工アプリ</h1>
+      <nav class="navlist">
+<!-- 線の色を変更するHTML要素 -->
+        <input type="color" id="color">
+<!-- 線の太さを変更するHTML要素 -->
+        <input type="range" id="range" min="1" max="100">
+      </nav>
+      <div class="uploadbtn">
+        <input type="file" name="file" id="file">
+      </div>
+      <div class="canvasarea">
+        <canvas id="drawarea" width="800" height="600" style="border:1px solid blue;"></canvas>
+      </div>
+      <div class="c_s_btn">
+        <button id="clear_btn">全部消す</button>
+        <button id="download" href="#">保存する</button>
+      </div>
+      <div id="result"></div>
+    </section>
+<!-- jQuery -->
+    <script src="js/jquery-2.1.3.min.js"></script>
+
+<script>
+
+
+// 線を描くよの2文
+      const can = $("#drawarea")[0];
+      const ctx = can.getContext("2d");
+
+// グローバル変数の定義、お絵かきアプリの状態を判定するのに使う
+// ex)絵を描けるのか、どの位置にいるのか、線の太さ・色何か
+      let canvas_mouse_event = false; //最初は描けない状態
+      let oldX = 0; //1つ前のx座標
+      let oldY = 0; //1つ前のy座標
+      let bold_line = 3; //太さ
+      let color = "#color"; //色
+
+// 色変更
+      let color_change = $("#color");
+
+// 太さ変更
+      let bold_change =$("#range");
+
+// マウスダウンの処理
+      $(can).on("mousedown", function(e){
+        // 下の2つがないと場所が把握できない
+        console.log(e.offsetX);
+        console.log(e.offsetY);
+        // canvas上でマウスを動かしたときに、線を描けるようにする 
+        canvas_mouse_event = true;
+        // 描き始める位置をoldX、oldYに入れる
+        oldX = e.offsetX;
+        oldY = e.offsetY;
+      });
+
+// マウスムーブの処理
+      $(can).on("mousemove", function(e){
+        if(canvas_mouse_event === true){
+          // console.log(e.offsetX);
+          // マウスを動かした先の座標の値を取得する。
+          const px = e.offsetX;
+          const py = e.offsetY;
+          // 線の色
+          ctx.strokeStyle = color_change.val();
+          // 線の太さ
+          ctx.lineWidth = bold_change.val();
+          // 線の形状
+          ctx.lineCap = "round";
+          // 線の角を面取りするか
+          ctx.lineJoin = "round";
+          // 描き始め
+          ctx.beginPath();
+          // カーソルを移動する(スタート位置)
+          ctx.moveTo(oldX, oldY);
+          // 線を移動しながら描く(動かした先のマウスの位置)
+          ctx.lineTo(px, py);
+          // 線を描く
+          ctx.stroke();
+          // 下のを入れないと、始点からしか線が引けない
+          oldX = px;
+          oldY = py;
+        }
+      });
+// マウスアップ離したとき
+      $(can).on("mouseup", function(){
+        canvas_mouse_event = false;
+      });
+// クリアボタンを押したとき
+      $("#clear_btn").on("click", function(){
+        ctx.beginPath();
+        ctx.clearRect(0, 0, can.width, can.height);
+      });
+// canvasエリアから出たときに描けなくなる
+      $(can).on("mouseout", function(){
+        canvas_mouse_event = false
+      });
+
+// canvasに画像を表示させる処理
+      let file = $("#file")[0]; //=document.getElementById('file');
+      let canvasWidth = 800; 
+      let canvasHeight = 600;
+      let uploadImgSrc; //imgをアップロードする
+// ファイル情報を取得する
+      function loadLocalImage(e) {
+      let fileData = e.target.files[0]; //fileを引数eに渡す
+// 画像ファイル以外は処理を止める
+      if(!fileData.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+      }
+
+// FileReaderオブジェクトを使ってファイル読み込み
+      let reader = new FileReader(); //ファイルの読み込みを開始する
+// ファイル読み込みに成功したときの処理
+      reader.onload = function(){
+// canvas上に表示する
+      uploadImgSrc = reader.result;
+      canvasDraw();
+      }
+// ファイル読み込みを実行
+      reader.readAsDataURL(fileData);
+      }
+
+// ファイルが指定された時にloadLocalImage()を実行
+      file.addEventListener('change', loadLocalImage, false);
+
+// Canvas上に画像を表示する
+      function canvasDraw(imgSrc) {
+// Canvas上に画像を表示
+        let img = new Image();
+        img.src = uploadImgSrc;
+        img.onload = function() {
+        ctx.drawImage(img, 0, 0, canvasWidth, this.height * (canvasWidth / this.width));
+        // console.log(this.height);
+        // console.log(this.width);
+// canvasを画像に変換
+        let data = can.toDataURL();
+// 画像として出力
+        let outputImg = $("#img").text();//document.createElement('img');
+        outputImg.src = data;
+      //   document.getElementById('result').appendChild(outputImg);
+        }
+      }
+// canvasを画像で保存
+      $("#download").on("click", function(){
+        canvas = document.getElementById("drawarea"); //=$("#drawarea")[0];
+        console.log(canvas);
+        let data = can.toDataURL();
+        console.log(data);
+        let base64 = canvas.toDataURL("image/jpeg");
+        document.getElementById("download").href = base64; //=$("#download")[0]
+        console.log(base64);
+      });
+
+      function setBgColor(){
+// canvasの背景色を設定(指定がない場合にjpeg保存すると背景が黒になる)
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0,0,canvasWidth,canvasHeight);
+       }
+
+</script>
+  </body>
+</html>

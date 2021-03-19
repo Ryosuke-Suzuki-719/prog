@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>円</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script>
+      const can = $("#canvas")[0];
+      const ctx = can.getContext("2d");
+
+      ctx.beginPath();
+      ctx.fillStyle = "#ff0000";
+      ctx.arc(100, 100, 50, 0, Math.PI*2, false); //(ｘに100,ｙに100,半径50,最初の角度,最後の角度180.)
+      ctx.fill(); //strokeの代わりに描く
+    </script>
+  </body>
+</html>
