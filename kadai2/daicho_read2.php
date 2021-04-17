@@ -1,19 +1,24 @@
 <?php
 
-// DB接続情報
-$dbn = 'mysql:dbname=gsacs_d02_03;charset=utf8;port=3306;host=localhost';
-$user = 'root';
-$pwd = '';
+// 関数を実行したファイルの読み込み
+include('functions.php');
+// 関数実行
+$pdo = connect_to_db();
+// 下のを上の関数で実行
+// // DB接続情報
+// $dbn = 'mysql:dbname=gsacs_d02_03;charset=utf8;port=3306;host=localhost';
+// $user = 'root';
+// $pwd = '';
 
-// DB接続
-try {
-  $pdo = new PDO($dbn, $user, $pwd);
-} catch (PDOException $e) {
-  echo json_encode(["db error" => "{$e->getMessage()}"]);
-  exit();
-}
+// // DB接続
+// try {
+//   $pdo = new PDO($dbn, $user, $pwd);
+// } catch (PDOException $e) {
+//   echo json_encode(["db error" => "{$e->getMessage()}"]);
+//   exit();
+// }
 
-// 購入日順に並べる
+// 名前順に並べる
 $sql = "SELECT * FROM daicho_table ORDER BY uname ASC";
 
 $stmt = $pdo->prepare($sql);
@@ -33,14 +38,19 @@ if ($status==false) {
       $output .= "<tr>";
       $output .= "<td>{$record["deadline"]}</td>";
       $output .= "<td>{$record["uname"]}</td>";
-      $output .= "<td> 0 {$record["tel"]}</td>";
+      $output .= "<td>{$record["tel"]}</td>";
       $output .= "<td>{$record["goods"]}</td>";
       $output .= "<td>{$record["money"]}</td>";
       $output .= "<td>{$record["memo"]}</td>";
+      // edit 編集リンクを追加
+      $output .="<td><a href='daicho_edit.php?id={$record["id"]}'>編集</a></td>";
+      // delete 削除リンクを追加
+      $output .="<td><a href='daicho_delete.php?id={$record["id"]}'>削除</a></td>";
       $output .= "</tr>";
     }
     // var_dump($output);
     // exit();
+    unset($record);
   }
 
 ?>
@@ -59,16 +69,18 @@ if ($status==false) {
   <fieldset>
     <legend>DB連携型化粧品台帳登録画面（一覧画面）</legend>
     <a href="daicho_input.php">登録画面に戻る</a>
-    <a href="daicho_read.php">購入日順で見る</a>
+    <a href="daicho_read2.php">名前順で見る</a>
     <table border="1">
       <thead>
         <tr>
-          <th width="100">購入日</th>
-          <th width="100">購入者</th>
-          <th>連絡先</th>
-          <th>購入商品</th>
-          <th>購入金額</th>
-          <th>お客様メモ</th>         
+          <th class="th_sht">購入日</th>
+          <th class="th_sht">購入者</th>
+          <th class="th_sht">連絡先</th>
+          <th class="th_long">購入商品</th>
+          <th class="th_sht">購入金額</th>
+          <th class="th_long">お客様メモ</th>    
+          <th class="th_sht"></th>
+          <th class="th_sht"></th>     
         </tr>
       </thead>
       <tbody>

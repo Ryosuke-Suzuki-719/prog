@@ -10,6 +10,8 @@ if(
   !isset($_POST['money']) || $_POST['money']=='' ||
   !isset($_POST['memo']) || $_POST['memo']==''
 ) {
+  // 項目が入力されていない場合はここでエラーを出力し，以降の処理を中止する
+  echo json_encode(["error_msg" => "no input"]);
   exit('ParamError');
 }
 
@@ -26,28 +28,26 @@ $user = 'root';
 $pwd = '';
 
 // DB接続
-try {
-  $pdo = new PDO($dbn, $user, $pwd);
-} catch (PDOException $e) {
-  echo json_encode(["db error" => "{$e->getMessage()}"]);
-  exit();
-}
+include('functions.php');
+// 関数実行
+$pdo = connect_to_db();
 
 $sql = 'INSERT INTO daicho_table(id, deadline, uname, tel, goods, money, memo, created_at, updated_at) VALUES(NULL, :deadline, :uname, :tel, :goods, :money, :memo, sysdate(), sysdate())';
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':deadline', $deadline, PDO::PARAM_STR);
 $stmt->bindValue(':uname', $uname, PDO::PARAM_STR);
-$stmt->bindValue(':tel', $tel, PDO::PARAM_INT);
+$stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
 $stmt->bindValue(':goods', $goods, PDO::PARAM_STR);
 $stmt->bindValue(':money', $money, PDO::PARAM_INT);
 $stmt->bindValue(':memo', $memo, PDO::PARAM_STR);
 $status = $stmt->execute(); // SQLを実行
 
 if ($status==false) {
+  // SQL実行に失敗した場合はここでエラーを出力し，以降の処理を中止する
   $error = $stmt->errorInfo();
-  // データ登録失敗次にエラーを表示
-  exit('sqlError:'.$error[2]);
+  echo json_encode(["error_msg" => "{$error[2]}"]);
+  exit();
   } 
   else {
   // 登録ページへ移動
