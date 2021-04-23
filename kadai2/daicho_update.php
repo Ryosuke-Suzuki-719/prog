@@ -1,7 +1,12 @@
 <?php
 // var_dump($_POST);
 // exit();
-include("functions.php");
+// セッションの開始
+session_start();
+// 関数ファイル読み込み
+include ('functions.php');
+check_session_id();
+// include("functions.php");
 $id = $_POST["id"];
 $deadline = $_POST["deadline"];
 $uname = $_POST["uname"];

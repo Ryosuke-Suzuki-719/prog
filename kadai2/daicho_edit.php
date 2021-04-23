@@ -1,5 +1,11 @@
 <?php
-  include("functions.php");
+// include("functions.php");
+// // 関数ファイルの読み込み
+// セッションの開始
+session_start();
+// 関数ファイル読み込み
+include ('functions.php');
+check_session_id();
   $id = $_GET["id"];
   // var_dump("id");
   // exit();

@@ -1,8 +1,12 @@
 <?php
 // var_dump($_GET);
 // exit();
+session_start();
+// 関数ファイル読み込み
+include ('functions.php');
+check_session_id();
 
-include("functions.php");
+// include("functions.php");
 $id = $_GET["id"];
 
 $pdo = connect_to_db();

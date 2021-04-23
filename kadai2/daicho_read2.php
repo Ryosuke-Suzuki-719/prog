@@ -1,7 +1,12 @@
 <?php
 
-// 関数を実行したファイルの読み込み
-include('functions.php');
+// // 関数を実行したファイルの読み込み
+// include('functions.php');
+// セッションの開始
+session_start();
+// 関数ファイル読み込み
+include ('functions.php');
+check_session_id();
 // 関数実行
 $pdo = connect_to_db();
 // 下のを上の関数で実行
@@ -62,14 +67,15 @@ if ($status==false) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>DB連携型化粧品台帳登録画面（一覧画面）</title>
+  <title>DB連携型化粧品台帳登録画面（一覧画面・名前順）</title>
 </head>
 
 <body>
   <fieldset>
-    <legend>DB連携型化粧品台帳登録画面（一覧画面）</legend>
+    <legend>DB連携型化粧品台帳登録画面（一覧画面・名前順）</legend>
     <a href="daicho_input.php">登録画面に戻る</a>
-    <a href="daicho_read2.php">名前順で見る</a>
+    <a href="daicho_read.php">購入日順で見る</a>
+    <a href="daicho_search_index.php">検索画面をひらく</a>
     <table border="1">
       <thead>
         <tr>

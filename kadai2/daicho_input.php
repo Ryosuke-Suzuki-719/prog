@@ -1,3 +1,12 @@
+<?php
+// セッションの開始
+session_start();
+// 関数ファイル読み込み
+include ('functions.php');
+check_session_id();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -11,7 +20,7 @@
   <form action="daicho_create.php" method="POST">
     <fieldset>
       <legend>DB連携型化粧品台帳作成リスト（入力画面）</legend>
-      <a href="daicho_read.php">化粧品台帳を確認する</a>
+      <a href="daicho_read.php">化粧品台帳を確認する（購入日順）</a>
       <div>
         購入日<br><input type="date" name="deadline">
       </div>
