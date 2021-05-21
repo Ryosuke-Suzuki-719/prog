@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* ページ背景の色指定 */
+html{
+    background-color:#e27db366;
+}
+/* 文字の色、字体、大きさ指定 */
+body{
+    color:#333333;
+    font-family:"Open Sans",'ヒラギノ角ゴ ProN W3', Hiragino Kaku Gothic ProN, "メイリオ", Meiryo, sans-serif;
+    ;
+    font-size: 1.6rem;
+}
+/* ログインページの大枠 */
+.login_page{
+    text-align: center;
+    margin: 100px auto;
+    width: 516px;
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+}
+/* サツドラ化粧品台帳 */
+.login_title{
+    padding: 40px
+}
+/* パスワードやidのデザイン */
+.login_id_pass{
+    display: block;
+    width: 400px;
+    padding: 15px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #ebebeb;
+}
+/* ログインボタンのデザイン */
+.login_btn{
+    position: relative;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 3px;
+    width: 150px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.login_information{
+    text-align: left;
+    font-size: 0.9rem;
+    
+}
+/* 非表示にするcss */
+.hiden{
+    display: none;
+}
+
+/* ログインページの大枠 */
+.login_page2{
+    text-align: center;
+    margin: 100px auto;
+    width: 740px;
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+}
+.main_btn{  
+    display: inline-block;
+    text-decoration: none;
+    background: #e27db366;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 310px;
+    height: 310px;
+    line-height: 120px;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 5px #e27db366;
+    border: solid 2px rgba(255, 255, 255, 0.47);
+    /* transition: .4s; */
+    margin: 20px;
+}
+.main_btn:hover {
+    background: #eb489fe3;
+    color: #fff;
+  }
+
+.flex_half{
+    display: flex;
+}
+/* .th_sht{
+    height: 40px;
+    width: 170px;
+
+}
+.th_long{
+    height: 40px;
+    width: 340px;
+} */
+
+table , td{
+    border: 1px solid #595959;	
+    border-collapse: collapse;
+}
+/* 
+td{	
+    padding: 3px;	
+    width: 30px;	
+    height: 25px;
+} */
+
+/* th {
+    background: #f0e6cc;
+} */
+
+.td_style1{
+    width: 480px;	
+    height: 25px;
+}
+
+.td_style2{
+    width: 480px;	
+    height: 120px;
+}
+
+.even {	
+    background: #fbf8f0;
+}
+
+.odd {	
+    background: #fefcf9;
+}
